@@ -1,0 +1,16 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', type='text/css', href='/css/index.css')
+block content
+  .main
+    .main-body
+      .container
+        .row
+          .col-md-8.col-md-offset-2
+            h1.brand-heading Automation
+            button#blinds.btn.btn-success(type='button' name='blinds') Trying to sleep
+block footer
+block scripts
+  // Automation script
+  script(src='js/automation.js')
