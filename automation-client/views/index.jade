@@ -9,8 +9,13 @@ block content
         .row
           .col-md-8.col-md-offset-2
             h1.brand-heading ChumPi
-            p.intro-text Don't do anything funny.
-        a.btn.btn-circle.page-scroll(href='torrent')
-          i.fa.fa-angle-double-down.animated
+        .row
+          #lights.a.btn.btn-success.btn-lg Lights
+          #fan.a.btn.btn-success.btn-lg Fan
+        .row
+          p
+          iframe#cameraframe(align='center', width='358', height='293')
 block footer
 block scripts
+  // Index script
+  script(src='js/index.js')
