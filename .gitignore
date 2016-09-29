@@ -3,3 +3,5 @@ automation-server/public/components/*
 automation-client/node_modules/*
 automation-client/public/components/*
 wiringPi/*
+webcam-server/m-video/*
+webcam-server/motion.log
