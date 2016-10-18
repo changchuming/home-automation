@@ -20,7 +20,7 @@ $(function() {
 	}
 });
 
-$( "#lights" ).click(function() {
+$( "#lights" ).change(function() {
 	var lightsState = 0;
 	if ($('#lightsOff').hasClass('active')) {
 		lightsState = 0;
@@ -32,7 +32,7 @@ $( "#lights" ).click(function() {
   $.post('/lights', {lightsState: lightsState});
 });
 
-$( "#fan" ).click(function() {
+$( "#fan" ).change(function() {
 	var fanState = 0;
 	if ($('#fanSpeed2').hasClass('active')) {
 		fanState = 2;
