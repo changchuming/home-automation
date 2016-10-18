@@ -21,8 +21,8 @@ $(function() {
 });
 
 $( "#lights :input" ).change(function() {
-	console.log($('#lights label.active input').val());
-  	$.post('/lights', {lightsState: $('#lights label.active input').val()});
+	console.log(this.val());
+  	$.post('/lights', {this.val()});
 });
 
 $( "#fan :input" ).change(function() {
