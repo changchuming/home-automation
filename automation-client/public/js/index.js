@@ -22,7 +22,7 @@ $(function() {
 
 $( "#lights :input" ).change(function() {
 	console.log(this.val());
-  	$.post('/lights', {this.val()});
+  	$.post('/lights', {lightsState: this.val()});
 });
 
 $( "#fan :input" ).change(function() {
