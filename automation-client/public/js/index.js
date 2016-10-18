@@ -21,12 +21,11 @@ $(function() {
 });
 
 $( "#lights :input" ).change(function() {
-	console.log($(this).val());
   	$.post('/lights', {lightsState: $(this).val()});
 });
 
 $( "#fan :input" ).change(function() {
-  	$.post('/fan', {fanState: $('#filterDay label.active input').val()});
+  	$.post('/fan', {fanState: $(this).val()});
 });
 
 var currentLocation = window.location.href;
