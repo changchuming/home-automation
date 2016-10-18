@@ -34,7 +34,7 @@ exports.about = function(req, res){
 //##############################################################################################
 exports.lights = function(req, res){
 	// Explicitly use 0 and 1 so output is integer
-	lightsState = req.data.lightsState;
+	lightsState = req.body.lightsState;
 	if (lightsState == 2) {
 		exec('gpio write 1 1',
 		  function (error, stdout, stderr) {
@@ -71,7 +71,7 @@ exports.lights = function(req, res){
 //##############################################################################################
 exports.fan = function(req, res){
 	// Explicitly use 0 and 1 so output is integer
-	fanState = req.data.fanState;
+	fanState = req.body.fanState;
 	exec('gpio write 16 ' + fanState,
 	  function (error, stdout, stderr) {
 	    console.log('stdout: ' + stdout);
