@@ -1,22 +1,24 @@
 //----------------------------------------------------------------------------------------------
 // Module dependencies
 //----------------------------------------------------------------------------------------------
-// Express.io, combination of express and socket.io
-var express = require('express.io'); 
-var app = module.exports = express();
-app.http().io();
-// Serve-favicon, module to display favicon
+// Express
+var express = require('express');
+var app = express();
+
+// Middleware
 var favicon = require('serve-favicon'); 
-app.use(favicon(__dirname + '/public/img/favicon.ico'));
-// Standard stuff
-var bodyParser = require("body-parser");
-app.configure(function(){
-	  app.use(bodyParser.json());
-	  app.use(bodyParser.urlencoded({ extended: true }));
-	  app.use(app.router);
-	});
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var methodOverride = require('method-override');
+var static = require('serve-static');
+var errorHandler = require('errorhandler');
+var cors = require('cors');
+
+// Standard stuff	  
 var http = require('http');
 var path = require('path');
+var fs = require('fs');
+var util = require("util");
 
 //----------------------------------------------------------------------------------------------
 // Routes
@@ -26,31 +28,32 @@ var index = require('./routes');
 //----------------------------------------------------------------------------------------------
 // Express - All environments
 //----------------------------------------------------------------------------------------------
-app.set('port', process.env.PORT || 80);
+var port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'pug');
+
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan('combined'));
+app.use(methodOverride('_method'));
+app.use(static(__dirname + '/public'));
+app.use(cors());
 
 //----------------------------------------------------------------------------------------------
 // Development only
 //----------------------------------------------------------------------------------------------
 
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 //----------------------------------------------------------------------------------------------
 // Create server and listen to port
 //----------------------------------------------------------------------------------------------
 
-app.listen(app.get('port'), function(){
-   console.log("Express server listening on port " + app.get('port'));
+app.listen(port, function(){
+   console.log("Express server listening on port " + port);
 });
 
 //##############################################################################################
@@ -62,11 +65,6 @@ app.get('/', index.display);
 // Display about page
 //##############################################################################################
 app.get('/about', index.about);
-
-//##############################################################################################
-// Toggle auto lights
-//##############################################################################################
-app.post('/autolights', index.autolights);
 
 //##############################################################################################
 // Toggle lights

@@ -1,0 +1,49 @@
+extends layout
+
+block styles
+  link(rel='stylesheet', type='text/css', href='/css/index.css')
+block content
+  .main
+    .main-body
+      .container
+        .row
+          .col-md-8.col-md-offset-2
+            h1.brand-heading ChumPi
+        .row
+          .col-md-4
+            h2 Lights 
+          .col-md-4
+            .btn-group.btn-group-lg(data-toggle='buttons')
+              label#lightsOn.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  On
+              label#lightsOff.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  Off
+              label#lightsAuto.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  Auto
+        .row
+          .col-md-4
+            h2 Fan 
+          .col-md-4
+            .btn-group.btn-group-lg(data-toggle='buttons')
+              label#fanSpeed1.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  1
+              label#fanSpeed2.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  2
+              label#fanSpeedOff.btn.btn-primary
+                input(type='radio', name='options', autocomplete='off')
+                |  Off
+        .row
+          p
+          iframe#cameraframe(align='center', width='358', height='293')
+block footer
+block scripts
+  // Index script
+  script.
+    var lightsState = !{lightsState};
+    var fanState = !{fanState};
+  script(src='js/index.js')
