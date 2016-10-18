@@ -10,6 +10,7 @@
 var util = require('util'),
     exec = require('child_process').exec,
     child;
+var autoLightsState = 1;
 var lightsState = 1;
 var fanState = 1;
  
@@ -39,6 +40,27 @@ exports.lights = function(req, res){
 		lightsState = 0;
 	}
 	exec('gpio write 15 ' + lightsState,
+	  function (error, stdout, stderr) {
+	    console.log('stdout: ' + stdout);
+	    console.log('stderr: ' + stderr);
+	    if (error !== null) {
+	      console.log('exec error: ' + error);
+	    }
+	});
+	res.end();
+};
+
+//##############################################################################################
+//Toggle auto lights
+//##############################################################################################
+exports.autolights = function(req, res){
+	// Explicitly use 0 and 1 so output is integer
+	if (autoLightsState == 0) {
+		autoLightsState = 1;
+	} else {
+		autoLightsState = 0;
+	}
+	exec('gpio write 1 ' + autoLightsState,
 	  function (error, stdout, stderr) {
 	    console.log('stdout: ' + stdout);
 	    console.log('stderr: ' + stderr);

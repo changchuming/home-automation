@@ -10,8 +10,15 @@ block content
           .col-md-8.col-md-offset-2
             h1.brand-heading ChumPi
         .row
-          #lights.a.btn.btn-success.btn-lg Lights
-          #fan.a.btn.btn-success.btn-lg Fan
+          .btn-group.btn-group.lg(role='group', aria-label='...')
+            button.btn.btn-default(type='button') On
+            button.btn.btn-default(type='button') Off
+            button.btn.btn-default(type='button') Automate
+        .row
+          .btn-group.btn-group.lg(role='group', aria-label='...')
+            button.btn.btn-default(type='button') On
+            button.btn.btn-default(type='button') Off
+            button.btn.btn-default(type='button') Automate
         .row
           p
           iframe#cameraframe(align='center', width='358', height='293')
