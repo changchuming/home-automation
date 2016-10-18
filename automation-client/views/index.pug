@@ -14,28 +14,28 @@ block content
             h2 Lights 
           .col-md-4
             #lights.btn-group.btn-group-lg(data-toggle='buttons')
-              label#lightsOn.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
+              label.btn.btn-primary
+                input(type='radio', value="1", name='options', autocomplete='off')
                 |  On
-              label#lightsOff.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
+              label.btn.btn-primary
+                input(type='radio', value="0",, name='options', autocomplete='off')
                 |  Off
-              label#lightsAuto.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
+              label.btn.btn-primary
+                input(type='radio', value="2",, name='options', autocomplete='off')
                 |  Auto
         .row
           .col-md-4
             h2 Fan 
           .col-md-4
             #fan.btn-group.btn-group-lg(data-toggle='buttons')
-              label#fanSpeed1.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
-                |  1
-              label#fanSpeed2.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
+              label.btn.btn-primary
+                input(type='radio', value="2",, name='options', autocomplete='off')
                 |  2
-              label#fanSpeedOff.btn.btn-primary
-                input(type='radio', name='options', autocomplete='off')
+              label.btn.btn-primary
+                input(type='radio', value="1",, name='options', autocomplete='off')
+                |  1
+              label.btn.btn-primary
+                input(type='radio', value="0",, name='options', autocomplete='off')
                 |  Off
         .row
           p

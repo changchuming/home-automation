@@ -34,6 +34,7 @@ exports.about = function(req, res){
 //##############################################################################################
 exports.lights = function(req, res){
 	// Explicitly use 0 and 1 so output is integer
+	console.log(req.body.lightsState);
 	lightsState = req.body.lightsState;
 	if (lightsState == 2) {
 		exec('gpio write 1 1',
