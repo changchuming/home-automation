@@ -28,11 +28,12 @@ void setup()
 void loop() 
 {
   if (digitalRead(lightAutoPin) == HIGH) { // If in auto mode
-    if (analogRead(lightSensorPin)>450) {
+    if (analogRead(lightSensorPin)>550) {
       lightServo.write(0);
-    } else {
+    } else if (analogRead(lightSensorPin)<450) {
       lightServo.write(35);
     }
+//    lightServo.write(0);
   } else {                                 // If in manual mode
     if (digitalRead(lightControlPin) == LOW) {
       lightServo.write(0);
