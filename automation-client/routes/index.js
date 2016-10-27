@@ -104,6 +104,7 @@ exports.fan = function(req, res){
 
 exports.camera = function(req, res){
 	if (req.body.cameraState == 1) {
+		cameraState = req.body.cameraState;
 		exec ('sudo ../webcam-server/motion -n -c ../webcam-server/motion-mmalcam.conf &',
 		  	function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
@@ -112,12 +113,12 @@ exports.camera = function(req, res){
 			      	console.log('exec error: ' + error);
 			      	res.send(false);
 			    } else {
-		    		cameraState = req.body.cameraState;
 			    	res.send(true);
 			    }
 			}
 		);
 	} else {
+    	cameraState = req.body.cameraState;
 		exec('sudo killall motion',
 			function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
@@ -126,7 +127,6 @@ exports.camera = function(req, res){
 			      	console.log('exec error: ' + error);
 			      	res.send(false);
 			    } else {
-			    	cameraState = req.body.cameraState;
 			    	res.send(true);
 			    }
 			}
