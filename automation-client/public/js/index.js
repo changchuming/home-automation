@@ -32,6 +32,7 @@ $( "#fan :input" ).change(function() {
 $( "#camera :input" ).change(function() {
 	var that = $(this);
   	$.post('/camera', {cameraState: $(this).val()}, function (data) {
+  		console.log(data);
   		if (data) {
 		  	if (that.val()==1) {
 		  		$('#cameraframe').show();
