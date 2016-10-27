@@ -30,15 +30,15 @@ $( "#fan :input" ).change(function() {
 });
 
 $( "#camera :input" ).change(function() {
-	var that = $(this);
+  	if ($(this).val()==1) {
+		$('#cameraframe').show();
+		var currentLocation = window.location.href;
+		$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+	}
   	$.post('/camera', {cameraState: $(this).val()}, function (data) {
   		console.log(data);
   		if (data) {
-		  	if (that.val()==1) {
-		  		$('#cameraframe').show();
-		  		var currentLocation = window.location.href;
-				$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
-		  	} else {
+  			if (!data) {
 		  		$('#camera input[value="' + 0 + '"]').parent('.btn').addClass('active');
 		  		$('#cameraframe').hide();
 		  	}
