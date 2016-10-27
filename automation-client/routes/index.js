@@ -103,6 +103,7 @@ exports.fan = function(req, res){
 //##############################################################################################
 
 exports.camera = function(req, res){
+	console.log(req.body.cameraState);
 	if (req.body.cameraState) {
 		exec ('sudo ../webcam-server/motion -n -c ../webcam-server/motion-mmalcam.conf &',
 		  	function (error, stdout, stderr) {
@@ -118,6 +119,7 @@ exports.camera = function(req, res){
 			}
 		);
 	} else {
+		console.log(req.body.cameraState);
 		exec('sudo killall motion',
 			function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
