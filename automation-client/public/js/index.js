@@ -37,11 +37,11 @@ $( "#camera :input" ).change(function() {
 	}
   	$.post('/camera', {cameraState: $(this).val()}, function (data) {
   		console.log(data);
-  		if (data) {
-  			if (!data) {
-		  		$('#camera input[value="' + 0 + '"]').parent('.btn').addClass('active');
-		  		$('#cameraframe').hide();
-		  	}
-  		}
+  		// if (data) {
+  		// 	if (!data) {
+		  // 		$('#camera input[value="' + 0 + '"]').parent('.btn').addClass('active');
+		  // 		$('#cameraframe').hide();
+		  // 	}
+  		// }
   	});
 });
