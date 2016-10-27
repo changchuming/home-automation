@@ -6,4 +6,4 @@ gpio mode 15 out
 gpio write 15 1
 gpio mode 16 out
 gpio write 16 1
-sudo forever start "/home/pi/home-automation/automation-client/automate.js"
+sudo forever start "/home/pi/home-automation/automation-client/automate-client.js"
