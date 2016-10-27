@@ -3,21 +3,15 @@
  */
 
 $(function() {
-	// if (lightsState == 0) {
-	// $('#lightsOff').addClass('active');
-	// } else if (lightsState == 1) {
-	// 	$('#lightsOn').addClass("active");
-	// } else {
-	// 	$('#lightsAuto').addClass('active');
-	// }
-
-	// if (fanState == 2) {
-	// 	$('#fanSpeed2').addClass('active');
-	// } else if (fanState == 1) {
-	// 	$('#fanSpeed1').addClass('active');
-	// } else {
-	// 	$('#fanSpeedOff').addClass('active');
-	// }
+	// setup
+	$('#cameraframe').hide();
+	$.post('/status', function(data) {
+		if (data) {
+			$('#lights input[value="' + data.lightsState + '"]').parent('.btn').addClass('active');
+			$('#fan input[value="' + data.fanState + '"]').parent('.btn').addClass('active');
+			$('#camera input[value="' + data.cameraState + '"]').parent('.btn').addClass('active');
+		}
+	});
 });
 
 $( "#lights :input" ).change(function() {
@@ -28,5 +22,18 @@ $( "#fan :input" ).change(function() {
   	$.post('/fan', {fanState: $(this).val()});
 });
 
-var currentLocation = window.location.href;
-$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+$( "#camera :input" ).change(function() {
+	var that = $(this);
+  	$.post('/camera', {cameraState: $(this).val()}, function (data) {
+  		if (data) {
+		  	if (that.val()==1) {
+		  		$('#cameraframe').show();
+		  		var currentLocation = window.location.href;
+				$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+		  	} else {
+		  		$('#camera input[value="' + 0 + '"]').parent('.btn').addClass('active');
+		  		$('#cameraframe').hide();
+		  	}
+  		}
+  	});
+});
