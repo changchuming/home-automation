@@ -106,7 +106,7 @@ exports.fan = function(req, res){
 
 exports.camera = function(req, res){
 	if (req.body.cameraState) {
-		exec ('../webcam-server/motion -n -c motion-mmalcam.conf &',
+		exec ('sudo ../webcam-server/motion -n -c ../webcam-server/motion-mmalcam.conf &',
 		  	function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
 			    console.log('stderr: ' + stderr);
