@@ -105,7 +105,7 @@ exports.fan = function(req, res){
 exports.camera = function(req, res){
 	if (req.body.cameraState == 1) {
 		cameraState = req.body.cameraState;
-		exec ('sudo ../webcam-server/motion -n -c ../webcam-server/motion-mmalcam.conf &',
+		exec ('sudo /home/pi/home-automation/webcam-server/motion -n -c /home/pi/home-automation/webcam-server/motion-mmalcam.conf &',
 		  	function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
 			    console.log('stderr: ' + stderr);
