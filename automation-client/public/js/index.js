@@ -42,7 +42,7 @@ $( "#camera :input" ).change(function() {
 
 var updateCamera = function () {
 	var currentLocation = window.location.href;
-	var request = $.get("http://www.google.com");
+	var request = $.get(currentLocation.substring(0,currentLocation.length-1)+":8081");
 	request.fail(function () {
 		console.log('Camera off. Trying again.');
 		updateCamera();
