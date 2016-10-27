@@ -31,17 +31,24 @@ $( "#fan :input" ).change(function() {
 
 $( "#camera :input" ).change(function() {
   	if ($(this).val()==1) {
-		$('#cameraframe').show();
-		var currentLocation = window.location.href;
-		$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+  		updateCamera();
+	} else {
+		$('#cameraframe').hide();
 	}
   	$.post('/camera', {cameraState: $(this).val()}, function (data) {
   		console.log(data);
-  		// if (data) {
-  		// 	if (!data) {
-		  // 		$('#camera input[value="' + 0 + '"]').parent('.btn').addClass('active');
-		  // 		$('#cameraframe').hide();
-		  // 	}
-  		// }
   	});
 });
+
+var updateCamera = function () {
+	var currentLocation = window.location.href;
+	var request = $.get("http://www.google.com");
+	request.fail(function () {
+		console.log('Camera off. Trying again.');
+		updateCamera();
+	});
+	request.done(function () {
+		$('#cameraframe').show();
+		$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+	});
+}
