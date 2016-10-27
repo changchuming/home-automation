@@ -31,7 +31,11 @@ $( "#fan :input" ).change(function() {
 
 $( "#camera :input" ).change(function() {
   	if ($(this).val()==1) {
-  		updateCamera();
+  		setTimeout(function () {
+  			var currentLocation = window.location.href;
+  			$('#cameraframe').show();
+			$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
+		}, 3000);
 	} else {
 		$('#cameraframe').hide();
 	}
@@ -39,16 +43,3 @@ $( "#camera :input" ).change(function() {
   		console.log(data);
   	});
 });
-
-var updateCamera = function () {
-	var currentLocation = window.location.href;
-	var request = $.get(currentLocation.substring(0,currentLocation.length-1)+":8081");
-	request.fail(function () {
-		console.log('Camera off. Trying again.');
-		updateCamera();
-	});
-	request.done(function () {
-		$('#cameraframe').show();
-		$("#cameraframe").attr("src", currentLocation.substring(0,currentLocation.length-1)+":8081");
-	});
-}
