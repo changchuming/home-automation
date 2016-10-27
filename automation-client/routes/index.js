@@ -61,10 +61,8 @@ exports.lights = function(req, res){
 		    console.log('stderr: ' + stderr);
     	    if (error !== null) {
 		      	console.log('exec error: ' + error);
-		      	res.send(false);
 		    } else {
 		    	lightsState = req.body.lightsState;
-		    	res.send(true);
 		    }
 		});
 		exec('gpio write 15 ' + req.body.lightsState,
