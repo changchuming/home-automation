@@ -121,7 +121,7 @@ exports.camera = function(req, res){
 		);
 	} else {
 		exec('sudo killall motion',
-			function (error, stdout, stdout) {
+			function (error, stdout, stderr) {
 			    console.log('stdout: ' + stdout);
 			    console.log('stderr: ' + stderr);
 			    if (error !== null) {
