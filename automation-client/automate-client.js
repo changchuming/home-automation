@@ -28,7 +28,7 @@ var index = require('./routes');
 //----------------------------------------------------------------------------------------------
 // Express - All environments
 //----------------------------------------------------------------------------------------------
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 80;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
